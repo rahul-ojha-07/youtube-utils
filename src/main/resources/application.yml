@@ -1,0 +1,27 @@
+server:
+  port: 8080
+debug: true
+spring:
+  application:
+    name: youtube-utils
+
+logging:
+  level:
+    in.rahulojha.service: debug
+    root: info
+
+app:
+  config:
+    useFfmpeg: true
+    custom-config:
+      ytDlpPath: "C:\\youtube-dlp"
+      ffmpegPath: "C:\\youtube-dlp\\ffmpeg\\bin"
+      os: windows
+    default-config:
+      ytDlpPathWin: "C:\\Users\\rahul\\yt-dlp"
+      ffmpegPathWin: "C:\\Users\\rahul\\yt-dlp\\ffmpeg"
+      ytDlpPathLinux: "/usr/local/bin/yt-dlp"
+      ffmpegPathLinux: "/usr/local/bin/ffmpeg"
+      ytDlpPathMac: "/usr/local/bin/yt-dlp"
+      ffmpegPathMac: "/usr/local/bin/ffmpeg"
+
