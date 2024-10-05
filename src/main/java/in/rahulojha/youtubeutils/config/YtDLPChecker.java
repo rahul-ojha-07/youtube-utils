@@ -42,7 +42,7 @@ public class YtDLPChecker implements ApplicationRunner {
         if (StringUtils.isBlank(ytDLPPath)) {
             if (DownloadUtils.isValidPath(ytDLPPath)) {
                 log.info("Using existing yt-dlp installation path: {}", ytDLPPath);
-            } else if (DownloadUtils.isBinaryValid(ytDLPPath, VERSION)) {
+            } else if (DownloadUtils.isBinaryValid(getYtDLPExecutable(ytDLPPath), VERSION)) {
                 log.info("Using existing yt-dlp installation path with binary: {}", ytDLPPath);
             } else {
                 log.warn("Existing path is invalid: {}", ytDLPPath);
@@ -88,7 +88,7 @@ public class YtDLPChecker implements ApplicationRunner {
         log.info("yt-dlp Checker Starting");
         if (System.getProperty(YTDLP_PATH) == null) {
             setYtDlpInstallPath();
-            System.setProperty(YTDLP_PATH, ytDLPPath);
+            System.setProperty(YTDLP_PATH, getYtDLPExecutable(ytDLPPath));
             checkAndDownloadYtDlp();    
         } else {
             log.info("yt-dlp path is set to {}", System.getProperty(YTDLP_PATH));

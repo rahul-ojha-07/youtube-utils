@@ -1,5 +1,6 @@
 package in.rahulojha.youtubeutils.service.impl;
 
+import in.rahulojha.youtubeutils.config.AppConfig;
 import in.rahulojha.youtubeutils.entity.Details;
 import in.rahulojha.youtubeutils.entity.ValidationResponse;
 import in.rahulojha.youtubeutils.enums.Tag;
@@ -17,6 +18,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static in.rahulojha.youtubeutils.constants.ApplicationConstants.YTDLP_PATH;
+
 
 @Log4j2
 @Service
@@ -24,6 +27,7 @@ import java.util.stream.Collectors;
 public class YoutubeUtilsServiceImpl implements YoutubeUtilsService {
 
     List<FieldValidator> fieldValidator;
+    AppConfig appConfig;
 
     private static final ProcessBuilder processBuilder = new ProcessBuilder();
 
@@ -84,12 +88,19 @@ public class YoutubeUtilsServiceImpl implements YoutubeUtilsService {
     }
 
 
+
+
     private List<String> buildCommand(Details details) {
         if (details.getTags() == null || details.getTags().isEmpty()) {
             throw new IllegalArgumentException("Tags are empty");
         }
         this.validateDetails(details);
-        List<String> command = new ArrayList<>(List.of("yt-dlp"));
+        List<String> command = new ArrayList<>(List.of(System.getProperty(YTDLP_PATH)));
+
+        if (appConfig.isUseFfmpeg()) {
+            command.add("--ffmpeg-location");
+            command.add(System.getProperty("ffmpeg_path"));
+        }
         List<Tag> tags = details.getTags();
 
         // Check for specific tags and build command accordingly
