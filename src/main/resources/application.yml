@@ -12,16 +12,7 @@ logging:
 
 app:
   config:
-    useFfmpeg: true
-    custom-config:
-      ytDlpPath: "C:\\youtube-dlp"
-      ffmpegPath: "C:\\youtube-dlp\\ffmpeg\\bin"
-      os: windows
-    default-config:
-      ytDlpPathWin: "C:\\Users\\rahul\\yt-dlp"
-      ffmpegPathWin: "C:\\Users\\rahul\\yt-dlp\\ffmpeg"
-      ytDlpPathLinux: "/usr/local/bin/yt-dlp"
-      ffmpegPathLinux: "/usr/local/bin/ffmpeg"
-      ytDlpPathMac: "/usr/local/bin/yt-dlp"
-      ffmpegPathMac: "/usr/local/bin/ffmpeg"
-
+    use-ffmpeg: true
+    look-in-path: false
+    ytDlpPath: C:\\Users\\rahul\\yt-dlp
+    ffmpegPath: C:\\Users\\rahul\\yt-dlp\\ffmpeg

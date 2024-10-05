@@ -17,7 +17,6 @@ public class YoutubeUtilsApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(YoutubeUtilsApplication.class, args);
-//        FfmpegDownloader.run();
     }
 
 }
